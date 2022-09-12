@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="header" style="height: 24px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(48, 48, 48);">
+        <ui:Foldout text="Foldout" name="foldout" style="height: 100%; width: 100%; -unity-text-align: upper-left; flex-direction: column; flex-wrap: nowrap; background-color: rgb(62, 62, 62); padding-left: 4px; padding-right: 4px;" />
+    </ui:VisualElement>
+</ui:UXML>

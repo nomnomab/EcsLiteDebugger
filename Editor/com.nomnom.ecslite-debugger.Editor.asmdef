@@ -1,0 +1,19 @@
+{
+    "name": "com.nomnom.ecslite-debugger.Editor",
+    "rootNamespace": "Nomnom.EcsLiteDebugger",
+    "references": [
+        "GUID:e59bf9fc7d5a44b18a819a92edd46163",
+        "GUID:3c13cf8ca797b6747a6ad4eb4acfa07f"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

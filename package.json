@@ -1,0 +1,24 @@
+{
+  "name": "com.nomnom.ecslite-debugger",
+  "version": "1.0.0",
+  "displayName": "ecsLite Debugger",
+  "description": "Provides a hierarchy and inspector window to view world entities, and mutate components.",
+  "unity": "2021.3",
+  "unityRelease": "8f1",
+  "licensesUrl": "https://choosealicense.com/licenses/mit/",
+  "dependencies": {},
+  "devDependencies": {},
+  "samples": [],
+  "keywords": [
+    "ecsLite",
+    "ecs",
+    "Unity",
+    "editor"
+  ],
+  "author": {
+    "name": "Andrew Burke",
+    "email": "",
+    "url": ""
+  },
+  "type": "library"
+}

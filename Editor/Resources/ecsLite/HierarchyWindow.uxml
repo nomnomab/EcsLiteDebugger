@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="background" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: rgb(56, 56, 56); display: none;" />
+    <uie:Toolbar name="toolbar">
+        <ui:VisualElement name="spacer" style="flex-grow: 1; flex-shrink: 0;" />
+        <ui:Button text="Reload" display-tooltip-when-elided="true" name="reload" class="unity-toolbar-button" style="border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;" />
+    </uie:Toolbar>
+    <ui:VisualElement name="search" style="height: auto; width: 100%;">
+        <uie:ToolbarSearchField style="width: auto; margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px;" />
+    </ui:VisualElement>
+    <ui:ScrollView name="hierarchy" vertical-scroller-visibility="AlwaysVisible" view-data-key="hierarchy-scroll-bar" vertical-page-size="100" style="flex-grow: 1; flex-wrap: nowrap;" />
+</ui:UXML>

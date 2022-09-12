@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="padding-left: 8px; padding-right: 8px; padding-top: 8px; padding-bottom: 8px; border-bottom-width: 1px; border-bottom-color: rgb(26, 26, 26);">
+        <ui:Label text="Entity 13" display-tooltip-when-elided="true" name="id" style="-unity-font-style: normal; font-size: 16px;" />
+        <ui:VisualElement style="flex-shrink: 0; flex-grow: 1; flex-direction: row; flex-wrap: nowrap; height: 20px; align-items: center;">
+            <ui:Label text="(No undo support)" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 11px;" />
+            <ui:VisualElement style="flex-shrink: 0; flex-grow: 1;" />
+            <ui:Button text="Reload" display-tooltip-when-elided="true" name="reload" class="unity-toolbar-button" style="border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:ScrollView vertical-page-size="100" vertical-scroller-visibility="AlwaysVisible" name="components" style="flex-shrink: 0; flex-grow: 1;" />
+    <ui:VisualElement name="interval" style="flex-direction: row; align-items: center; width: 100%; margin-left: auto; margin-right: auto; justify-content: center; background-color: rgb(62, 62, 62); border-top-color: rgb(26, 26, 26); border-top-width: 1px;">
+        <ui:Label text="Updates every" display-tooltip-when-elided="true" style="-unity-text-align: middle-center; padding-left: 0; padding-right: 0; padding-top: 2px; padding-bottom: 2px; border-bottom-color: rgb(0, 0, 0); border-top-width: 0; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); width: auto; flex-shrink: 1;" />
+        <ui:Label text="frames" display-tooltip-when-elided="true" />
+    </ui:VisualElement>
+</ui:UXML>
