@@ -14,6 +14,10 @@ namespace Nomnom.EcsLiteDebugger.Editor {
       GetWindow<EcsLiteHierarchyWindow>("ecsLite Hierarchy").Show();
     }
 
+    private static readonly Color32 _selectedColor = new Color32(44, 93, 135, 255);
+    private static readonly Color32 _colorInterval1 = new Color32(56, 56, 56, 255);
+    private static readonly Color32 _colorInterval2 = new Color32(88, 88, 88, 255);
+
     private DropdownField _worldMenu;
     private Toolbar _toolbar;
     private ToolbarSearchField _searchField;
@@ -146,7 +150,7 @@ namespace Nomnom.EcsLiteDebugger.Editor {
             child.Q<Label>("name").text = mutation.entity.GetPrettyName();
             break;
           case WorldDebugView.ChangeType.Del:
-            child.Q<Label>("name").text = null;
+            child.Q<Label>("name").text = "-";
             break;
           default:
             throw new ArgumentOutOfRangeException();
@@ -158,7 +162,7 @@ namespace Nomnom.EcsLiteDebugger.Editor {
       Button row = new Button();
       VisualElement left = new VisualElement();
       Label index = new Label(id.ToString());
-      Label name = new Label(null) {
+      Label name = new Label("-") {
         name = "name"
       };
 
@@ -167,23 +171,26 @@ namespace Nomnom.EcsLiteDebugger.Editor {
       row.Add(left);
       row.Add(name);
 
-      int tmpId = id;
-      WorldDebugView.DebugEntity GetEntity() => view.GetEntities()[tmpId];
+      WorldDebugView.DebugEntity GetEntity(int id) => view.GetEntities()[id];
       row.clicked += () =>
       {
-        EcsLiteInspectorWindow.SetEntity(view, GetEntity());
+        int id = (int)row.userData;
+        EcsLiteInspectorWindow.SetEntity(view, GetEntity(id));
+        FilterEntities();
       };
 
       left.style.minWidth = new StyleLength(new Length(30, LengthUnit.Pixel));
       left.style.backgroundColor = new StyleColor(new Color32(45, 45, 45, 255));
-        
-      index.style.SetPadding(new StyleLength(new Length(2, LengthUnit.Pixel)));
 
+      row.name = "entity-row";
+      row.userData = id;
+      
       row.style.flexDirection = new StyleEnum<FlexDirection>(FlexDirection.Row);
       row.style.flexWrap = new StyleEnum<Wrap>(Wrap.NoWrap);
       row.style.SetPadding(0);
       row.style.SetMargin(0);
       row.style.SetBorderRadius(0);
+      row.style.SetBorderWidth(0);
       row.style.backgroundImage = null;
 
       name.style.flexWrap = new StyleEnum<Wrap>(Wrap.NoWrap);
@@ -201,6 +208,8 @@ namespace Nomnom.EcsLiteDebugger.Editor {
       string filter = _searchField.value.ToLower();
       int i = 0;
 
+      bool hasSelected = EcsLiteInspectorWindow.TryGetEntity(out int entityId);
+      
       foreach (VisualElement child in _hierarchy.Children()) {
         Label name = child.ElementAt(1) as Label;
         string text = name.text.ToLower();
@@ -213,11 +222,18 @@ namespace Nomnom.EcsLiteDebugger.Editor {
         child.style.height = show ? StyleKeyword.Auto : 0;
         child.style.display = new StyleEnum<DisplayStyle>(show ? DisplayStyle.Flex : DisplayStyle.None);
 
-        if (show) {
-          Color color = i % 2 == 0 ? new Color32(56, 56, 56, 255) : new Color32(88, 88, 88, 255);
-          child.style.backgroundColor = new StyleColor(color);
-          i++;
+        if (!show) {
+          continue;
         }
+
+        int id = (int)child.userData;
+        Color color = hasSelected && id == entityId 
+          ? _selectedColor
+          : i % 2 == 0 
+            ? _colorInterval1 
+            : _colorInterval2;
+        child.style.backgroundColor = new StyleColor(color);
+        i++;
       }
       
       _hierarchy.MarkDirtyRepaint();

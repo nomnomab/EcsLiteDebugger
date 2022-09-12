@@ -1,4 +1,5 @@
-﻿using UnityEngine.UIElements;
+﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Nomnom.EcsLiteDebugger.Editor {
   internal static class UIElementsExtensions {
@@ -21,6 +22,20 @@ namespace Nomnom.EcsLiteDebugger.Editor {
       style.borderBottomRightRadius = length;
       style.borderTopLeftRadius = length;
       style.borderTopRightRadius = length;
+    }
+    
+    internal static void SetBorderWidth(this IStyle style, StyleFloat length) {
+      style.borderBottomWidth = length;
+      style.borderTopWidth = length;
+      style.borderLeftWidth = length;
+      style.borderRightWidth = length;
+    }
+    
+    internal static void SetBorderColor(this IStyle style, Color color) {
+      style.borderBottomColor = color;
+      style.borderTopColor = color;
+      style.borderLeftColor = color;
+      style.borderRightColor = color;
     }
   }
 }

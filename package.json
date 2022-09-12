@@ -1,6 +1,6 @@
 {
   "name": "com.nomnom.ecslite-debugger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "ecsLite Debugger",
   "description": "Provides a hierarchy and inspector window to view world entities, and mutate components.",
   "unity": "2021.3",

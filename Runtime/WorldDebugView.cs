@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace Nomnom.EcsLiteDebugger {
   public class WorldDebugView {
@@ -50,10 +49,7 @@ namespace Nomnom.EcsLiteDebugger {
 
     public void CreateDummyList() {
       for (int i = 0; i < _world.GetAllocatedEntitiesCount(); i++) {
-        _mutations.Add(new Mutation {
-          entity = _entities[i],
-          changeType = ChangeType.New
-        });
+        UpdateEntity(i, ChangeType.New);
       }
 
       IsDirty = true;

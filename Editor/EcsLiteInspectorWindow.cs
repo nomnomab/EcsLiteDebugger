@@ -27,6 +27,12 @@ namespace Nomnom.EcsLiteDebugger.Editor {
     private int _ticks;
     private UQueryBuilder<ComponentGUI> _childQuery;
 
+    public static bool TryGetEntity(out int id) {
+      id = -1;
+      bool valid = _instance && _instance.IsEntityValid(out _, out id);
+      return valid;
+    }
+    
     public static void SetEntity(WorldDebugView view, WorldDebugView.DebugEntity entity, bool ignoreInstance = false) {
       _view = view;
       _entity = view != null ? entity.world.PackEntityWithWorld(entity.id) : null;
@@ -172,8 +178,6 @@ namespace Nomnom.EcsLiteDebugger.Editor {
       
       return !(_entity == null || !_entity.Value.Unpack(out world, out entity) || entity == -1);
     }
-
-    private Vector3 position;
 
     public static void Update() {
       if (_instance) {

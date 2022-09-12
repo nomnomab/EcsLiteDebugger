@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace Nomnom.EcsLiteDebugger {
   public class WorldDebugSystem: IEcsPreInitSystem, IEcsRunSystem, IEcsDestroySystem, IEcsWorldEventListener {
@@ -9,12 +8,15 @@ namespace Nomnom.EcsLiteDebugger {
     private List<(int, WorldDebugView.ChangeType)> _dirtyEntities;
 
     public WorldDebugSystem(string name) {
+#if UNITY_EDITOR
       _name = name;
       _dirtyEntities = new List<(int, WorldDebugView.ChangeType)>();
       _view = new WorldDebugView();
+#endif
     }
     
     public void PreInit(EcsSystems systems) {
+#if UNITY_EDITOR
       EcsWorld world = systems.GetWorld();
       world.AddEventListener(this);
       
@@ -26,9 +28,11 @@ namespace Nomnom.EcsLiteDebugger {
       for (int i = 0; i < entityCount; i++) {
         OnEntityCreated(entities[i]);
       }
+#endif
     }
 
     public void Run(EcsSystems systems) {
+#if UNITY_EDITOR
       if (_dirtyEntities.Count <= 0 || _view == null) {
         return;
       }
@@ -40,31 +44,43 @@ namespace Nomnom.EcsLiteDebugger {
       _view.IsDirty = true;
       
       _dirtyEntities.Clear();
+#endif
     }
 
     public void Destroy(EcsSystems systems) {
+#if UNITY_EDITOR
       _view?.Destroy();
+#endif
     }
     
     public void OnEntityCreated(int entity) {
+#if UNITY_EDITOR
       _dirtyEntities.Add((entity, WorldDebugView.ChangeType.New));
+#endif
     }
 
     public void OnEntityChanged(int entity) { 
+#if UNITY_EDITOR
       _dirtyEntities.Add((entity, WorldDebugView.ChangeType.Modified));
+#endif
     }
 
     public void OnEntityDestroyed(int entity) { 
+#if UNITY_EDITOR
       _dirtyEntities.Add((entity, WorldDebugView.ChangeType.Del));
+#endif
     }
 
     public void OnFilterCreated(EcsFilter filter) { }
 
     public void OnWorldResized(int newSize) {
+#if UNITY_EDITOR
       _view.Repaint();
+#endif
     }
 
     public void OnWorldDestroyed(EcsWorld world) {
+#if UNITY_EDITOR
       world.RemoveEventListener(this);
 
       if (_view == null) {
@@ -75,6 +91,7 @@ namespace Nomnom.EcsLiteDebugger {
       _view.Repaint();
       _view.Destroy();
       _view = null;
+#endif
     }
   }
 }
