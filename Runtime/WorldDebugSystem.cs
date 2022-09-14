@@ -2,7 +2,11 @@
 using Leopotam.EcsLite;
 
 namespace Nomnom.EcsLiteDebugger {
+#if DEBUG || LEOECSLITE_WORLD_EVENTS
   public class WorldDebugSystem: IEcsPreInitSystem, IEcsRunSystem, IEcsDestroySystem, IEcsWorldEventListener {
+#else
+  public class WorldDebugSystem: IEcsPreInitSystem, IEcsRunSystem, IEcsDestroySystem {
+#endif
     private readonly string _name;
     private WorldDebugView _view;
     private List<(int, WorldDebugView.ChangeType)> _dirtyEntities;
